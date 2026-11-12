@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azil Islem • Data Science & Intelligence Artificielle | École HETIC</title>
+    <meta name="description" content="Portfolio d'Azil Islem, étudiant en Année Préparatoire Data Science & Intelligence Artificielle à l'école HETIC. Ex-Ingénieur Engineering & Process chez Samsung Sinova.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            850: '#151f33',
+                            950: '#070b14',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- Chart.js pour les visualisations interactives -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Feuille de styles personnalisée -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased min-h-screen selection:bg-indigo-600 selection:text-white">
+
+    <!-- ========================================== -->
+    <!-- BARRE DE NAVIGATION (HEADER)              -->
+    <!-- ========================================== -->
+    <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-slate-950/80 border-b border-slate-800 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo / Monogramme -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-600 to-sky-600 flex items-center justify-center font-serif font-bold text-white text-lg shadow-md group-hover:scale-105 transition-transform">
+                    AI
+                </div>
+                <div>
+                    <span class="font-serif font-bold text-lg tracking-wide block leading-none text-white group-hover:text-indigo-400 transition">Azil Islem</span>
+                    <span class="text-[11px] font-mono text-slate-400 tracking-wider uppercase">Data & IA • École HETIC</span>
+                </div>
+            </a>
+
+            <!-- Navigation Desktop -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                <a href="#about" class="hover:text-indigo-400 transition">À Propos</a>
+                <a href="#projects" class="hover:text-indigo-400 transition">Projets & Réalisations</a>
+                <a href="#interactive-lab" class="hover:text-indigo-400 transition flex items-center">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping mr-2"></span>
+                    <span>Lab Interactif IA</span>
+                </a>
+                <a href="#skills" class="hover:text-indigo-400 transition">Compétences</a>
+                <a href="#timeline" class="hover:text-indigo-400 transition">Parcours</a>
+                <a href="#contact" class="hover:text-indigo-400 transition">Contact</a>
+            </nav>
+
+            <!-- Actions Header (Thème & CV PDF) -->
+            <div class="hidden sm:flex items-center space-x-3">
+                <button id="theme-toggle" class="p-2.5 rounded-lg border border-slate-800 bg-slate-900/60 hover:bg-slate-800 transition text-slate-300 text-sm flex items-center space-x-2" title="Changer le thème">
+                    <i id="theme-icon" class="fa-solid fa-sun text-amber-400"></i>
+                    <span id="theme-text" class="text-xs font-mono">Mode</span>
+                </button>
+
+                <button onclick="window.print()" class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs tracking-wider uppercase transition shadow-md flex items-center space-x-2">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <span>Imprimer CV</span>
+                </button>
+            </div>
+
+            <!-- Bouton Menu Mobile -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300 p-2 text-xl hover:text-white">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Menu Déroulant Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-slate-800 bg-slate-950 px-6 py-4 space-y-3">
+            <a href="#about" class="block text-slate-300 hover:text-indigo-400 py-1">À Propos</a>
+            <a href="#projects" class="block text-slate-300 hover:text-indigo-400 py-1">Projets & Réalisations</a>
+            <a href="#interactive-lab" class="block text-slate-300 hover:text-indigo-400 py-1">Lab Interactif IA</a>
+            <a href="#skills" class="block text-slate-300 hover:text-indigo-400 py-1">Compétences</a>
+            <a href="#timeline" class="block text-slate-300 hover:text-indigo-400 py-1">Parcours</a>
+            <a href="#contact" class="block text-slate-300 hover:text-indigo-400 py-1">Contact</a>
+            <div class="pt-3 border-t border-slate-800 flex justify-between">
+                <button onclick="window.print()" class="text-xs text-indigo-400 font-mono"><i class="fa-solid fa-print mr-1"></i> Imprimer CV</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ========================================== -->
+        <!-- SECTION HERO (PROFIL AZIL ISLEM - HETIC)   -->
+        <!-- ========================================== -->
+        <section class="relative pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden border-b border-slate-800/80">
+            <!-- Arrière-plan subtil -->
+            <div class="absolute inset-0 -z-10 pointer-events-none opacity-20">
+                <div class="absolute top-1/4 left-1/3 w-96 h-96 rounded-full bg-indigo-600/30 blur-3xl pulse-glow"></div>
+                <div class="absolute bottom-10 right-1/4 w-80 h-80 rounded-full bg-sky-600/20 blur-3xl"></div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+                    
+                    <!-- Colonne Présentation -->
+                    <div class="flex-1 text-center lg:text-left">
+                        <!-- Badge Disponibilité & HETIC -->
+                        <div class="inline-flex items-center px-3.5 py-1.5 rounded-full bg-slate-900 border border-indigo-500/30 mb-6 shadow-sm">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 mr-2.5 animate-pulse"></span>
+                            <span id="hero-status" class="text-xs font-mono text-slate-300 font-medium">Étudiant à l'école HETIC (Data & IA)</span>
+                        </div>
+
+                        <!-- Titre Principal -->
+                        <h1 id="hero-name" class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-white tracking-tight leading-tight mb-3">
+                            Azil Islem
+                        </h1>
+                        <h2 id="hero-title" class="text-xl sm:text-2xl font-serif text-indigo-300 font-medium mb-4">
+                            Data Science & Intelligence Artificielle
+                        </h2>
+                        <p id="hero-subtitle" class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed mb-6">
+                            Étudiant en Année Préparatoire Data & IA à l'école HETIC • Ex-Ingénieur Engineering & Process chez Samsung Sinova
+                        </p>
+
+                        <div id="hero-location" class="text-sm text-slate-400 mb-8 font-mono">
+                            <i class="fa-solid fa-location-dot text-indigo-400 mr-2"></i>Paris, France / Sétif (Mobile)
+                        </div>
+
+                        <!-- Boutons d'Action CTA -->
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-8">
+                            <a href="#projects" class="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm transition-all shadow-lg hover:shadow-indigo-500/25 flex items-center space-x-2">
+                                <span>Découvrir mes Réalisations</span>
+                                <i class="fa-solid fa-arrow-down text-xs"></i>
+                            </a>
+                            <a href="#interactive-lab" class="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-medium text-sm transition flex items-center space-x-2">
+                                <i class="fa-solid fa-flask-vial text-indigo-400"></i>
+                                <span>Simulateur IA Interactif</span>
+                            </a>
+                            <a href="#contact" class="px-6 py-3 rounded-xl bg-transparent hover:bg-slate-800/40 border border-slate-700 text-slate-300 font-medium text-sm transition">
+                                Me contacter
+                            </a>
+                        </div>
+
+                        <!-- Coordonnées Rapides -->
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-sm text-slate-400 font-mono">
+                            <a href="mailto:azislem8@gmail.com" class="hover:text-indigo-400 transition flex items-center space-x-2">
+                                <i class="fa-solid fa-envelope text-indigo-400"></i>
+                                <span>azislem8@gmail.com</span>
+                            </a>
+                            <a href="tel:+33662065218" class="hover:text-sky-400 transition flex items-center space-x-2">
+                                <i class="fa-solid fa-phone text-sky-400"></i>
+                                <span>+33 6 62 06 52 18</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Colonne Visuelle (Badge HETIC & Projet IA) -->
+                    <div class="relative w-72 sm:w-80 lg:w-96 flex-shrink-0">
+                        <div class="relative mx-auto w-64 sm:w-72 h-80 sm:h-96 rounded-2xl overflow-hidden border-2 border-slate-700/80 shadow-2xl bg-slate-900 group">
+                            <!-- Image d'illustration moderne Tech / Data / IA -->
+                            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80" alt="Azil Islem" class="w-full h-full object-cover object-center grayscale group-hover:grayscale-0 transition-all duration-700" />
+                            
+                            <!-- Cartouche HETIC -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 right-4 p-3.5 rounded-xl bg-slate-950/90 backdrop-blur-md border border-slate-800">
+                                <div class="text-xs font-mono text-indigo-400 font-semibold uppercase tracking-wider">École HETIC</div>
+                                <div class="text-xs text-white font-serif font-bold mt-0.5">Année Préparatoire Data & IA</div>
+                                <div class="text-[11px] text-slate-400 mt-1">Ex-Ingénieur Engineering chez Samsung Sinova</div>
+                            </div>
+                        </div>
+
+                        <!-- Badge flottant "Maintenance Prédictive & IA" -->
+                        <div class="absolute -bottom-4 -left-4 p-3.5 rounded-xl bg-slate-900/95 border border-indigo-500/40 shadow-xl hidden sm:flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-brain"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs font-bold text-white font-mono">Maintenance Prédictive</div>
+                                <div class="text-[10px] text-slate-400 uppercase tracking-wider">IA & Signaux Physiques</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Métriques Clés d'Impact (Chiffres Clés) -->
+                <div id="key-metrics-container" class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-16 pt-8 border-t border-slate-800/80">
+                    <!-- Généré dynamiquement depuis data.js -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION À PROPOS & VISION TECHNIQUE       -->
+        <!-- ========================================== -->
+        <section id="about" class="py-20 border-b border-slate-800/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-xs font-mono uppercase tracking-widest text-indigo-400 font-semibold">Profil & Vision</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white mt-2 mb-4">L'Expertise Terrain au Service de la Data Science & de l'IA</h2>
+                    <div class="w-16 h-0.5 bg-indigo-500 mx-auto"></div>
+                </div>
+
+                <!-- Texte Bio -->
+                <div id="bio-text-container" class="max-w-4xl mx-auto text-center lg:text-left mb-16">
+                    <!-- Injecté par script.js -->
+                </div>
+
+                <!-- 4 Piliers Techniques -->
+                <div id="academic-pillars-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Injecté par script.js -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION LABORATOIRE IA INTERACTIF (VIBE)   -->
+        <!-- ========================================== -->
+        <section id="interactive-lab" class="py-20 bg-slate-900/40 border-b border-slate-800/80 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col lg:flex-row items-start justify-between gap-8 mb-12">
+                    <div>
+                        <div class="inline-flex items-center px-3 py-1 rounded-full bg-indigo-950/80 border border-indigo-500/40 text-indigo-300 text-xs font-mono mb-3">
+                            <i class="fa-solid fa-microchip mr-2"></i>Algorithme Prédictif de Détection d'Anomalies
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white">Simulateur IA : Détection de Défauts & Maintenance Prédictive</h2>
+                    </div>
+                    <p class="text-slate-400 text-sm max-w-xl leading-relaxed">
+                        Cette interface démontre en temps réel le fonctionnement d'un modèle d'IA pour évaluer la santé d'équipements critiques (Norme vibratoire ISO 10816). Ajustez les signaux pour observer la détection instantanée et les recommandations algorithmiques.
+                    </p>
+                </div>
+
+                <!-- Interface du Simulateur Interactif -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-slate-950/80 rounded-2xl border border-slate-800 p-6 sm:p-8 shadow-2xl">
+                    
+                    <!-- Colonne 1 : Signaux d'entrée des capteurs -->
+                    <div class="lg:col-span-6 space-y-6">
+                        <h3 class="text-lg font-serif font-bold text-white flex items-center border-b border-slate-800 pb-3">
+                            <i class="fa-solid fa-sliders text-indigo-400 mr-2.5"></i> Données Télémétriques des Capteurs
+                        </h3>
+
+                        <!-- Slider 1 : Vibrations RMS -->
+                        <div>
+                            <div class="flex justify-between text-sm mb-2">
+                                <label for="slider-vib" class="text-slate-300 font-medium">Vibration spectrale RMS (Accéléromètre) :</label>
+                                <span id="val-vib" class="text-indigo-400 font-mono font-bold">1.8 mm/s RMS</span>
+                            </div>
+                            <input id="slider-vib" type="range" min="0.5" max="12.0" step="0.1" value="1.8" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                            <div class="flex justify-between text-[11px] text-slate-500 font-mono mt-1">
+                                <span>&lt; 2.3 (Sain ISO)</span>
+                                <span>4.5 (Tolérable)</span>
+                                <span>&gt; 7.1 (Critique)</span>
+                            </div>
+                        </div>
+
+                        <!-- Slider 2 : Température -->
+                        <div>
+                            <div class="flex justify-between text-sm mb-2">
+                                <label for="slider-temp" class="text-slate-300 font-medium">Température palier & stator :</label>
+                                <span id="val-temp" class="text-indigo-400 font-mono font-bold">55 °C</span>
+                            </div>
+                            <input id="slider-temp" type="range" min="30" max="120" step="1" value="55" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                            <div class="flex justify-between text-[11px] text-slate-500 font-mono mt-1">
+                                <span>30 °C (Ambiant)</span>
+                                <span>75 °C (Nominal)</span>
+                                <span>120 °C (Surchauffe)</span>
+                            </div>
+                        </div>
+
+                        <!-- Slider 3 : Courant statorique -->
+                        <div>
+                            <div class="flex justify-between text-sm mb-2">
+                                <label for="slider-current" class="text-slate-300 font-medium">Intensité courant phase stator :</label>
+                                <span id="val-current" class="text-indigo-400 font-mono font-bold">12.0 A</span>
+                            </div>
+                            <input id="slider-current" type="range" min="5" max="35" step="0.5" value="12" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                            <div class="flex justify-between text-[11px] text-slate-500 font-mono mt-1">
+                                <span>Charge nominale : 12-14 A</span>
+                                <span>Surcharge : &gt; 20 A</span>
+                            </div>
+                        </div>
+
+                        <!-- Sélecteur : Vitesse de rotation -->
+                        <div>
+                            <label for="select-rpm" class="block text-sm text-slate-300 font-medium mb-2">Vitesse de rotation nominale (RPM) :</label>
+                            <select id="select-rpm" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 text-sm focus:outline-none focus:border-indigo-500">
+                                <option value="750">750 tr/min (8 pôles)</option>
+                                <option value="1500" selected>1500 tr/min (4 pôles - Standard)</option>
+                                <option value="3000">3000 tr/min (2 pôles - Haute vitesse)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Colonne 2 : Diagnostic en Temps Réel -->
+                    <div class="lg:col-span-6 flex flex-col justify-between bg-slate-900/50 rounded-xl p-6 border border-slate-800">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-serif font-bold text-white flex items-center">
+                                    <i class="fa-solid fa-microchip text-sky-400 mr-2.5"></i> Diagnostic Algorithmique IA
+                                </h3>
+                                <span id="sim-risk-badge" class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                                    État Nominal
+                                </span>
+                            </div>
+
+                            <!-- Score Jauge d'Anomalie -->
+                            <div class="text-center py-4">
+                                <div class="text-xs uppercase tracking-wider text-slate-400 font-mono">Indice d'Anomalie / Probabilité de Panne</div>
+                                <div id="sim-risk-value" class="text-5xl font-serif font-bold text-white my-2 font-mono">14%</div>
+                                
+                                <div class="w-full bg-slate-800 rounded-full h-3 overflow-hidden shadow-inner max-w-md mx-auto">
+                                    <div id="sim-risk-bar" class="h-full bg-emerald-500 transition-all duration-300" style="width: 14%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Attribution causale des capteurs -->
+                            <div class="mt-6 pt-4 border-t border-slate-800">
+                                <div class="text-xs font-mono text-slate-400 uppercase tracking-wider mb-3 flex items-center justify-between">
+                                    <span>Pondération des Signaux Capteurs</span>
+                                    <span class="text-[10px] text-slate-500 font-normal">Impact relatif</span>
+                                </div>
+                                <div id="shap-waterfall" class="space-y-3">
+                                    <!-- Rendu dynamique par script.js -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recommandation Prescriptive Automatisée -->
+                        <div id="sim-recommendation" class="mt-6 p-4 rounded-xl bg-slate-950 border border-slate-800/80 text-xs text-slate-300 leading-relaxed">
+                            <!-- Injecté par script.js -->
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION COMPÉTENCES & RADAR CHART          -->
+        <!-- ========================================== -->
+        <section id="skills" class="py-20 border-b border-slate-800/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-xs font-mono uppercase tracking-widest text-indigo-400 font-semibold">Expertise Technique</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white mt-2 mb-4">Compétences Techniques & Outils</h2>
+                    <p class="text-slate-400 text-sm">Une maîtrise transversale alliant analyse de données, modélisation Machine Learning et rigueur d'ingénierie.</p>
+                </div>
+
+                <!-- Radar Chart + Listes de compétences -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-12">
+                    
+                    <!-- Radar Chart (Chart.js) -->
+                    <div class="lg:col-span-5 p-6 rounded-2xl bg-slate-900/40 border border-slate-800 flex flex-col items-center justify-center">
+                        <h3 class="text-base font-serif font-bold text-white mb-4 flex items-center">
+                            <i class="fa-solid fa-chart-pie text-indigo-400 mr-2"></i> Équilibre des Compétences
+                        </h3>
+                        <div class="w-full h-80 relative">
+                            <canvas id="skillsRadarChart"></canvas>
+                        </div>
+                        <span class="text-xs text-slate-500 font-mono mt-3 text-center">Évaluation basée sur les projets data et expériences industrielles</span>
+                    </div>
+
+                    <!-- 3 Pôles Techniques -->
+                    <div id="skills-categories-container" class="lg:col-span-7 space-y-6">
+                        <!-- Injecté par script.js -->
+                    </div>
+
+                </div>
+
+                <!-- Section Langues & Atouts Personnels -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mt-8">
+                    <!-- Langues -->
+                    <div class="p-6 rounded-xl bg-slate-900/40 border border-slate-800">
+                        <h4 class="font-serif font-semibold text-white text-base mb-4 flex items-center">
+                            <i class="fa-solid fa-language text-sky-400 mr-2"></i> Langues Maîtrisées
+                        </h4>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between items-center pb-2 border-b border-slate-800/60">
+                                <span class="text-slate-300 font-medium">Arabe</span>
+                                <span class="text-xs font-mono px-2.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Langue maternelle / Excellent</span>
+                            </div>
+                            <div class="flex justify-between items-center pb-2 border-b border-slate-800/60">
+                                <span class="text-slate-300 font-medium">Français</span>
+                                <span class="text-xs font-mono px-2.5 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">Très Bien (Courant professionnel)</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-300 font-medium">Anglais</span>
+                                <span class="text-xs font-mono px-2.5 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Bien (Technique & Écrit)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Qualités Personnelles -->
+                    <div class="p-6 rounded-xl bg-slate-900/40 border border-slate-800">
+                        <h4 class="font-serif font-semibold text-white text-base mb-4 flex items-center">
+                            <i class="fa-solid fa-user-check text-indigo-400 mr-2"></i> Qualités Personnelles
+                        </h4>
+                        <ul class="space-y-2.5 text-xs text-slate-300">
+                            <li class="flex items-start"><i class="fa-solid fa-check text-indigo-400 mr-2 mt-0.5"></i> <span><strong>Capacité d'apprentissage rapide :</strong> Assimilation agile de nouveaux algorithmes et outils data/IA.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-check text-indigo-400 mr-2 mt-0.5"></i> <span><strong>Esprit d'équipe :</strong> Collaboration fluide avec équipes techniques et métier.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-check text-indigo-400 mr-2 mt-0.5"></i> <span><strong>Motivation & Résilience :</strong> Engagé et proactif pour concevoir des solutions performantes.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION PROJETS & EXPÉRIENCES             -->
+        <!-- ========================================== -->
+        <section id="projects" class="py-20 border-b border-slate-800/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-xs font-mono uppercase tracking-widest text-indigo-400 font-semibold">Réalisations & Missions</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white mt-2 mb-4">Projets Phares & Expériences Clés</h2>
+                    <p class="text-slate-400 text-sm">Du développement d'algorithmes prédictifs aux missions d'optimisation chez Samsung Sinova.</p>
+                </div>
+
+                <!-- Grille de Projets -->
+                <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Injecté dynamiquement par script.js -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION PARCOURS (TIMELINE)               -->
+        <!-- ========================================== -->
+        <section id="timeline" class="py-20 border-b border-slate-800/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-xs font-mono uppercase tracking-widest text-indigo-400 font-semibold">Évolution & Diplômes</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white mt-2 mb-4">Parcours Professionnel & Formation</h2>
+                    <div class="w-16 h-0.5 bg-indigo-500 mx-auto"></div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                    
+                    <!-- Expérience Industrielle -->
+                    <div class="p-8 rounded-2xl bg-slate-900/40 border border-slate-800">
+                        <h3 class="text-xl font-serif font-bold text-white mb-8 flex items-center">
+                            <i class="fa-solid fa-briefcase text-indigo-400 mr-3"></i> Expériences en Entreprise
+                        </h3>
+                        <div id="timeline-experience">
+                            <!-- Injecté par script.js -->
+                        </div>
+                    </div>
+
+                    <!-- Formation & Diplômes -->
+                    <div class="p-8 rounded-2xl bg-slate-900/40 border border-slate-800">
+                        <h3 class="text-xl font-serif font-bold text-white mb-8 flex items-center">
+                            <i class="fa-solid fa-graduation-cap text-sky-400 mr-3"></i> Diplômes & Formation
+                        </h3>
+                        <div id="timeline-education">
+                            <!-- Injecté par script.js -->
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION CONTACT                           -->
+        <!-- ========================================== -->
+        <section id="contact" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="max-w-3xl mx-auto text-center mb-16">
+                    <span class="text-xs font-mono uppercase tracking-widest text-indigo-400 font-semibold">Contact & Échange</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white mt-2 mb-4">Entrons en Contact</h2>
+                    <p class="text-slate-400 text-sm">Ouvert aux opportunités de stage, alternance et projets en Data Science, Intelligence Artificielle et Ingénierie.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-5xl mx-auto">
+                    
+                    <!-- Coordonnées Directes -->
+                    <div class="lg:col-span-5 p-8 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-6">
+                        <h3 class="text-xl font-serif font-bold text-white mb-4">Coordonnées Directes</h3>
+                        
+                        <div class="space-y-4 text-sm text-slate-300">
+                            <div class="flex items-start space-x-3">
+                                <i class="fa-solid fa-envelope text-indigo-400 mt-1"></i>
+                                <div>
+                                    <div class="text-xs text-slate-500 font-mono">Adresse Email</div>
+                                    <a href="mailto:azislem8@gmail.com" class="hover:text-indigo-400 transition font-medium">azislem8@gmail.com</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-3">
+                                <i class="fa-solid fa-phone text-sky-400 mt-1"></i>
+                                <div>
+                                    <div class="text-xs text-slate-500 font-mono">Téléphone / WhatsApp</div>
+                                    <a href="tel:+33662065218" class="font-mono text-sm text-slate-200 hover:text-sky-400 transition block mt-0.5">+33 6 62 06 52 18</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-3">
+                                <i class="fa-solid fa-location-dot text-indigo-400 mt-1"></i>
+                                <div>
+                                    <div class="text-xs text-slate-500 font-mono">Localisation & Mobilité</div>
+                                    <span>Paris, France / Sétif (Disponible et mobile)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-6 border-t border-slate-800">
+                            <div class="text-xs text-slate-500 uppercase font-mono tracking-wider mb-3">Statut Actuel</div>
+                            <div class="p-3.5 rounded-xl bg-indigo-950/40 border border-indigo-900/50 text-xs text-indigo-300 leading-relaxed">
+                                <i class="fa-solid fa-graduation-cap mr-1.5"></i>
+                                Étudiant à l'école <strong>HETIC</strong> en Année Préparatoire Data Science & IA (Fin de mission Ingénieur Engineering chez Samsung Sinova en Octobre 2026).
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulaire de Contact -->
+                    <form id="contact-form" class="lg:col-span-7 p-8 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="contact-name" class="block text-xs font-mono text-slate-400 mb-1">Votre Nom & Prénom *</label>
+                                <input type="text" id="contact-name" required class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-indigo-500 transition" placeholder="Nom ou Entreprise">
+                            </div>
+                            <div>
+                                <label for="contact-email" class="block text-xs font-mono text-slate-400 mb-1">Votre Adresse Email *</label>
+                                <input type="email" id="contact-email" required class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-indigo-500 transition" placeholder="contact@entreprise.com">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="contact-subject" class="block text-xs font-mono text-slate-400 mb-1">Objet de la prise de contact</label>
+                            <input type="text" id="contact-subject" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-indigo-500 transition" placeholder="Opportunité de Stage / Alternance Data & IA ou Échange">
+                        </div>
+
+                        <div>
+                            <label for="contact-message" class="block text-xs font-mono text-slate-400 mb-1">Votre Message *</label>
+                            <textarea id="contact-message" rows="5" required class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-indigo-500 transition resize-none" placeholder="Bonjour M. Azil, nous avons consulté votre profil à HETIC et nous souhaiterions échanger sur..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm transition shadow-lg flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-paper-plane text-xs"></i>
+                            <span>Envoyer le message</span>
+                        </button>
+                    </form>
+
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- ========================================== -->
+    <!-- PIED DE PAGE (FOOTER)                     -->
+    <!-- ========================================== -->
+    <footer class="border-t border-slate-800 py-12 bg-slate-950 text-slate-500 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                <p>© 2026 Azil Islem • Data Science & Intelligence Artificielle • École HETIC.</p>
+                <p class="mt-1 text-[11px] text-slate-600">Conception web moderne & simulateur interactif.</p>
+            </div>
+            <div class="flex items-center space-x-6">
+                <a href="#about" class="hover:text-slate-300 transition">À Propos</a>
+                <a href="#projects" class="hover:text-slate-300 transition">Projets</a>
+                <a href="#skills" class="hover:text-slate-300 transition">Compétences</a>
+                <a href="#" class="hover:text-indigo-400 transition"><i class="fa-solid fa-arrow-up mr-1"></i> Haut de page</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- MODALE ÉTUDE DE CAS PROJET                -->
+    <!-- ========================================== -->
+    <div id="project-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm p-4 items-center justify-center overflow-y-auto">
+        <div class="bg-slate-900 border border-slate-700/80 rounded-2xl max-w-3xl w-full p-6 sm:p-8 max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div id="project-modal-body">
+                <!-- Rempli dynamiquement par script.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts Données & Logique -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
